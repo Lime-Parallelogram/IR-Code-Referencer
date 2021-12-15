@@ -6,12 +6,13 @@
 #Date - 12/09/2019
 #------------------------------------------------------------#
 #Imports modules
+import time
 import RPi.GPIO as GPIO
 from datetime import datetime
 
 #Static program vars
 pin = 11 #Input pin of sensor (GPIO.BOARD)
-Buttons = [0x300ff9867L, 0x300ffd827L, 0x300ff8877L, 0x300ffa857L, 0x300ffe817L, 0x300ff48b7L, 0x300ff6897L, 0x300ff02fdL, 0x300ff32cdL, 0x300ff20dfL] #HEX code list
+Buttons = [0x300ff9867, 0x300ffd827, 0x300ff8877, 0x300ffa857, 0x300ffe817, 0x300ff48b7, 0x300ff6897, 0x300ff02fd, 0x300ff32cd, 0x300ff20df] #HEX code list
 ButtonsNames = ["RED",   "GREEN",      "BLUE",       "WHITE",      "DARK ORANGE","LIGHT GREEN","DARK BLUE",  "VIBRANT ORANGE","LIGHT BLUE","DARK PURPLE"] #String list in same order as HEX list
 
 #Sets up GPIO
@@ -30,6 +31,7 @@ def getBinary():
 	#Waits for the sensor to pull pin low
 	while value:
 		value = GPIO.input(pin)
+		time.sleep(0.001)
 		
 	#Records start time
 	startTime = datetime.now()
